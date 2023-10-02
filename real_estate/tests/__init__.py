@@ -1,0 +1,1 @@
+from . import test_sold_property

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Chapter 6: Actions & Menuitems -->
+	<record id="estate_property_tag_action" model="ir.actions.act_window">
+		<field name="name">Properties Tags</field>
+		<field name="res_model">estate.property.tags</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!-- Chapter 7: Tree View -->
+	<record id="estate_property_tags_view_tree" model="ir.ui.view">
+		<field name="name">estate.property.tags.tree</field>
+		<field name="model">estate.property.tags</field>
+		<field name="arch" type="xml">
+			<!-- editable from the bottom of the list -->
+			<tree string="Tags" editable="bottom">
+				<field name="sequence" widget="handle"/>
+				<field name="name" />
+			</tree>
+		</field>
+	</record>
+	<!-- Chapter 7: Form View -->
+	<record id="estate_property_tags_view_form" model="ir.ui.view">
+		<field name="name">estate.property.tags.form</field>
+		<field name="model">estate.property.tags</field>
+		<field name="arch" type="xml">
+			<form string="Esatte Property Tags">
+				<sheet>
+					<group>
+						<field name="name" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+</odoo>

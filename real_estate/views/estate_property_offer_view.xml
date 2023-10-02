@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Chapter 6: Actions & Menuitems -->
+	<record id="estate_property_offer_action" model="ir.actions.act_window">
+		<field name="name">Properties offer</field>
+		<field name="res_model">estate.property.offer</field>
+		<field name="view_mode">tree,form</field>
+		<field name="domain">[('property_type_id', '=', active_id)]</field>
+	</record>
+	<!-- Chapter 7: Tree View -->
+	<record id="estate_property_offer_view_tree" model="ir.ui.view">
+		<field name="name">estate.property.offer.tree</field>
+		<field name="model">estate.property.offer</field>
+		<field name="arch" type="xml">
+			<!-- Colorize the list based on the status using decortition -->
+			<tree string="offer" editable="bottom" decoration-danger="status == 'refused'" decoration-success="status == 'accepted'">
+				<field name="price" />
+				<field name="partner_id" />
+				<field name="validity" />
+				<!-- Make the buttons invisble -->
+				<!-- Button type object calls a method in the model -->
+				<button name="accept_offer_button" attrs="{'invisible':['|',('status','=', 'accepted'),('status','=','refused')]}" title="Accept"  type="object" icon="fa-check"></button>
+                <button name="refuse_offer_button" attrs="{'invisible':['|',('status','=', 'accepted'),('status','=','refused')]}" title="Refuse"  type="object" icon="fa-times"></button>	
+				<field name="date_deadline" />
+				<field name="status" optional="hide" attrs="{'readonly':True}"></field>
+			</tree>
+		</field>
+	</record>
+	<!-- Chapter 7: Form View -->
+	<record id="estate_property_offer_view_form" model="ir.ui.view">
+		<field name="name">estate.property.offer.form</field>
+		<field name="model">estate.property.offer</field>
+		<field name="arch" type="xml">
+			<!-- this form will appear in estate property view -->
+			<form string="Esatte Property offer">
+				<sheet>
+					<group>
+						<field name="price" />
+						<field name="partner_id" />
+						<field name="validity" />
+					
+						<field name="date_deadline" />
+						<field name="status" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+</odoo>

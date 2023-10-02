@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Chapter 6: Actions & Menuitems -->
+	<record id="estate_property_type_action" model="ir.actions.act_window">
+		<field name="name">Properties Type</field>
+		<field name="res_model">estate.property.type</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!-- Chapter 7: Tree View -->
+	<record id="estate_property_type_view_tree" model="ir.ui.view">
+		<field name="name">estate.property.type.tree</field>
+		<field name="model">estate.property.type</field>
+		<field name="arch" type="xml">
+			<tree string="Types">
+				<!-- Sequence field used to order types by the most used -->
+				<field name="sequence" widget="handle"/>
+				<field name="name" />
+			</tree>
+		</field>
+	</record>
+	<!-- Chapter 7: Form View -->
+    <record id="estate_property_type_view_form" model="ir.ui.view">
+        <field name="name">estate.property.type.form</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <form string="Esatte property Type">
+                <sheet>
+				<div class="oe_button_box" name="button_box">
+						<!-- button type action calls for another view -->
+                        <button name="%(estate_property_offer_action)d" type="action"
+                                class="oe_stat_button" icon="fa-bars"
+                                attrs="{'invisible': [('offer_count','=', 0)]}">
+                            <field name="offer_count"/>
+                            Offers
+                        </button>
+                    </div>
+                    <field name="name" class="h2"></field>
+                    <notebook>
+                        <page string="Properties">
+                            <field name="property_ids">
+                                <tree>
+                                    <field name="name"></field>
+                                    <field name="expected_price" string="Expected Price"></field>
+                                    <field name="status" string="Status"></field>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record> 
+
+</odoo>
